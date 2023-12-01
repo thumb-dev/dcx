@@ -1,54 +1,359 @@
 <style>
-  .caption {
-  position: absolute;
-  top: 50%;
-  left: 25%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  width: fit-content;
-  text-shadow: 0 0 8px rgba(0,0,0,.35);
-}
+  .heroImage-banner {
+    z-index: 999;
+    padding: 0;
+    margin: 0;
+    background-color: black !important;
+    width: auto;
+  }
 
-.captionText {
-  font-size: 3.333rem;
-  line-height: 1.1;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 60px;
-}
-@media screen and (max-width: 1300px) {
-  .caption {
-    left: 25%;
-  }
-  .captionText {
-    font-size: 50px;
-  }
-}
-@media screen and (max-width: 950px) {
-  .captionText {
-    font-size: 40px;
-  }
-}
+  .heroImage {
+    z-index: 999;
+    padding: 0;
+    margin: 0;
+    width: auto;
 
+    margin-bottom: 30px;
+    margin-top: 10px;
+  }
+
+  .heroImage-home {
+    border-bottom: 2px solid #E8E8E8;
+  }
+
+  .events-banner {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20%;
+  }
+
+  .caption {
+    color: black;
+    text-align: center;
+    margin: auto;
+  }
+
+  .captionText {
+    font-size: 3.333rem;
+    line-height: 1.1;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  .nav-line {
+    border-bottom: 2px solid black;
+  }
+
+    .caption-home-mobile {
+    text-align: center;
+    border-radius: 40px;
+    padding: 30px;
+    position: relative;
+    bottom: 25px;
+    z-index: 9999;
+    background: white;
+    width: 90%;
+    margin: auto;
+  }
+
+  .captionText-home {
+		font-size: 18px;
+    padding: 0 100px;
+	}
+
+  .secondText-home {
+		font-size: 40px;
+		line-height: 45px;
+		color: #01517D;
+		font-weight: 600;
+		margin-bottom: 25px;
+		padding: 0 70px;
+	}
+
+  .caption-button {
+    align-items: center;
+    background-color: #e81c2d;
+    border: 0px;
+    border-color: 1px #e81c2d;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: white;
+    display: flex;
+    font-size: 15px;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: bold;
+    justify-content: center;
+    letter-spacing: 1.35px;
+    line-height: normal;
+    margin-top: 1rem;
+    min-height: 48px;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    vertical-align: middle;
+    width: 265px;
+    margin: auto;
+  }
+
+  .caption-button:hover {
+    /*background-color: #a7111d;
+    border-color: #a7111d;*/
+    background-color: #D4E9E6;
+    border-color: #e81c2d;
+    color: black;
+    text-decoration: none;
+  }
+
+  .angle-text {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -35%);
+    color: white;
+    font-weight: bold;
+    width: fit-content;
+    text-shadow: 0 0 8px rgba(0, 0, 0, .35);
+    text-align: center;
+  }
+
+  .angle-caption-text {
+    width: max-content;
+    font-size: 30px;
+  }
+
+  .angleDiv-home {
+    border-left: 100vw solid black;
+    height: 100px;
+    border-top: 0 solid transparent;
+    border-bottom: 10rem solid transparent;
+  }
+
+  .angleDiv {
+    border-left: 100vw solid black;
+    height: 100px;
+    border-top: 0 solid transparent;
+    border-bottom: 10rem solid transparent;
+  }
+  .logo-text {
+    margin-bottom: 5px;
+    margin-top: 20px;
+    font-size: 12px;
+  }
+  .tp-logo {
+    width: 15%;
+    margin: auto;
+  }
+
+  .caption-home {
+    padding-top: 24%;
+  }
+  @media screen and (max-width: 1500px) {
+    .events-banner {
+      margin-bottom: 19%;
+    }
+  }
+
+  @media screen and (max-width: 1400px) {
+
+  }
+  @media screen and (max-width: 1334px) {
+    .secondText-home{
+      font-size: 35px;
+    }
+    .captionText-home {
+        font-size: 14px;
+    }
+    .caption-home {
+        padding-top: 20%;
+    }
+  }
+  @media screen and (max-width: 1320px) {
+    .secondText-home {
+      padding: 0 50px;
+    }
+  }
+
+  @media screen and (max-width: 1310px) {
+    .events-banner {
+      margin-bottom: 18%;
+    }
+  }
+
+  @media screen and (max-width: 1260px) {
+    .captionText-home {
+      font-size: 14px;
+    }
+
+    .secondText-home {
+      font-size: 30px;
+      line-height: 40px;
+    }
+    .logo-text {
+      font-size: 10px;
+    }
+
+  }
+
+  @media screen and (max-width: 1200px) {
+    .events-banner {
+      margin-bottom: 16%;
+    }
+
+    .secondText-home {
+      margin-bottom: 30px;
+    }
+  }
+  @media screen and (max-width: 1130px) {
+    .captionText-home {
+        padding: 0 40px;
+    }
+    .secondText-home {
+        margin-bottom: 10px;
+    }
+  }
+  @media screen and (max-width: 1050px) {
+
+    .caption-button {
+      margin-bottom: 25px;
+    }
+  }
+  @media screen and (max-width: 1030px) {
+    .captionText-home {
+        padding: 0px 35px;
+    }
+    .secondText-home {
+        margin-bottom: 10px;
+    }
+  }
+  @media screen and (max-width: 1017px) {
+    .secondText-home {
+        font-size: 30px;
+    }
+    .captionText-home {
+      font-size: 15px;
+    }
+    .logo-text {
+      font-size: 10px;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    .caption-home {
+        padding-top: 20px;
+        padding-bottom: 20px;
+  }
+  @media screen and (max-width: 950px) {
+    .events-banner {
+      margin-bottom: 14%;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .events-banner {
+      margin-bottom: 13%;
+    }
+
+    .angle-caption-text {
+      font-size: 23px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .caption {
+      left: 3%;
+    }
+
+
+    .caption-button {
+      margin-bottom: 25px;
+    }
+
+    .banner-image {
+      border-bottom: 2px solid black;
+      margin: auto;
+    }
+
+    .captionText-home {
+      padding-bottom: 0;
+    }
+
+    .secondText-home {
+      padding: 0;
+      font-size: 25px;
+      line-height: 28px;
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    .events-banner {
+      margin-bottom: 12%;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .events-banner {
+      margin-bottom: 10%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .events-banner {
+      margin-bottom: 8%;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    .events-banner {
+      margin-bottom: 6%;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    .caption-home-mobile {
+      padding-bottom: 0px
+    }
+  }
 </style>
-<div class="heroImage hidden-xs" ng-show="isActive('catalog')" style="">
-  <div class="home-banner">
-    <div class="caption">
-      <p class="captionText">Employee Resources</p>
-    </div>
-  </div>
-</div>
 
-<div class="heroImage hidden-xs" ng-show="isActive('catalog/usdp_path')" style="">
-  <div class="path-banner">
-    <div class="caption">
-      <p class="captionText">Order Your<br/>Label Path REQ Forms</p>
-    </div>
-  </div>
+<div class="alert alert-danger" role="alert" ng-show="isActive('catalog/dcx_events')" style="text-align: center">
+  <strong>If you need a shipping label, select Event Instruction Labels below, upload your label and add it to the cart.</strong>
 </div>
 
 
-<div class="product-search hidden-md hidden-lg">
+<div class="heroImage-home hidden-xs hidden-sm row" ng-show="isActive('catalog') || isActive('catalog/way_store')" style="">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 banner-text-large" style="text-align: center;">
+    <div class="caption-home">
+	  <p class="secondText-home">Welcome to the DCX Swag Store</p>
+      <div class="">
+        <p class="logo-text" style="color:#211e22;">powered by</p>
+        <img class="tp-logo" src="https://thumbprint.com/four51_images/ADT/tp_horizontal_fullcolor_RGB-01.svg" alt="Thumbprint">
+      </div>
+		</div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 pull-right">
+		<img class="img-responsive banner-xl-image" src="https://www.delegatecx.com/hubfs/DCX-474%20copy.jpg" alt="DCX Store">
+	</div>
+</div>
+
+
+<div class="heroImage-home hidden-md hidden-lg row" ng-show="isActive('catalog') || isActive('catalog/way_store')" style="">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 pull-right">
+    <img class="img-responsive banner-xl-image" src="https://www.delegatecx.com/hubfs/DCX-474%20copy.jpg" alt="DCX Store">
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 banner-text-large" style="text-align: center;">
+    <div class="caption-home">
+			<p class="secondText-home">Welcome to the DCX Swag Store</p>
+      <div class="">
+        <p class="logo-text" style="color:#211e22;">powered by</p>
+        <img class="tp-logo" src="https://thumbprint.com/four51_images/ADT/tp_horizontal_fullcolor_RGB-01.svg" alt="Thumbprint">
+      </div>
+		</div>
+  </div>
+</div>
+
+
+  <!--<div class="product-search hidden-md hidden-lg">
   <productsearchinput></productsearchinput>
-</div>
+</div>-->
