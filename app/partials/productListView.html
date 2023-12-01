@@ -1,27 +1,282 @@
-<div ng-show="productCount > settings.pageSize">
-    <pagination page="settings.currentPage" max-size="10" rotate="false" boundary-links="true" total-items="productCount"
-                items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}" first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
-</div>
-<div class="panel-product-list no-panels" ng-show="currentCategory.InteropID">
-    <nav class="nav">
-        <div class="row view-form-icon" ng-show="currentCategory.SortOptions.length > 0">
-            <div class="col-xs-9">
-                <label>{{'Sort by' | r | xlat}}</label>
-                <select class="form-control" ng-options="option.SortValue as (option.Display | xlat) for option in currentCategory.SortOptions" ng-model="sort"><option value=""></option></select>
-                <i class="fa fa-sort"/>
-            </div>
-        </div>
-        <ul style="display: flex;justify-content: center;flex-wrap: wrap;">
-            <loadingindicator ng-show="searchLoading" title="{{'Please wait while we fetch all products' | r | xlat}}" />
-            <li class="inline gallery" id="451_lst_prod" ng-repeat="product in products | paginate:(settings.currentPage-1) * settings.pageSize | limitTo:settings.pageSize | orderBy:sorter:direction" style="margin: 20px;">
-                <div class="well" style="border:none;border-radius: 30px;">
-                    <shortproductviewgallery p="product" user="user" />
-                </div>
-            </li>
-        </ul>
-    </nav>
-</div>
-<div ng-show="productCount > settings.pageSize">
-    <pagination page="settings.currentPage" max-size="10" rotate="false" boundary-links="true" total-items="productCount"
-                items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}" first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
-</div>
+<style media="screen">
+	.promo-cat {
+	  margin: 12px;
+	  font-size: 18px;
+	  margin-top: 36px;
+	  line-height: normal;
+	  margin-bottom: 10px;
+	}
+	.promo-label {
+	  display: flex;
+	}
+	.promo-img {
+	  padding-top: 5px;
+	}
+	.promo-text {
+	  padding-left: 10px;
+	  padding-top: 10px;
+	  font-weight: 500;
+	}
+	.divider {
+	  height: 1px;
+	  background-color: rgba(0, 0, 0, 0.12);
+	  width: 100%;
+	  margin-bottom: 14px;
+	}
+	.promo-button {
+	  background: transparent;
+	  border: none;
+	  padding: 5px 10px;
+	  min-width: 197px;
+	}
+	.promo-img-blue {
+	    height: 38px;
+        left: 9px;
+	}
+	.promo-img-blue-active {
+	  display: block !important;
+	  position: absolute;
+	  top: 10px;
+	  left: 10px;
+	  z-index: 99;
+	}
+	.promo-img-blue-inactive {
+	  display: none;
+	}
+	.promo-button:hover {
+	  background-color: rgba(0, 0, 0, 0.04);
+	}
+	.promo-button-active {
+	  color: rgb(53, 119, 212) !important;
+	  opacity: 0.7 !important;
+	  font-weight: 400 !important;
+	}
+	.cat-ul {
+	  display: flex;
+	}
+	.promo-text:active {
+	  opacity: 0.7 !important;
+  }
+  .promo-text:focus {
+	opacity: 0.7 !important;
+  }
+  .promo-img {
+      height: 40px;
+  }
+	@media screen and (max-width: 600px) {
+	  .cat-ul {
+		flex-wrap: wrap;
+	  }
+	}
+	@media screen and (max-width: 501px) {
+	  .cat-ul {
+		justify-content: center;
+	  }
+	}
+  </style>
+  <div class="" ng-hide="currentCategory.InteropID === 'adt_apparel' || currentCategory.InteropID === 'adt_men' || currentCategory.InteropID === 'adt_women' || currentCategory.InteropID === 'adt_unisex' || currentCategory.InteropID === 'adt_polos' || currentCategory.InteropID === 'adt_outer' || currentCategory.InteropID === 'adt_winter' || currentCategory.InteropID === 'adt_acc' || currentCategory.InteropID === 'adt_backpacks'">
+	<div ng-show="productCount > settings.pageSize">
+	  <pagination page="settings.currentPage" max-size="100" rotate="false" boundary-links="true" total-items="productCount" items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}"
+		first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
+	</div>
+	<div class="panel-product-list no-panels" ng-show="currentCategory.InteropID">
+	  <nav class="nav">
+		<div class="row view-form-icon" ng-show="currentCategory.SortOptions.length > 0">
+		  <div class="col-xs-12">
+			<label>{{'Sort by' | r | xlat}}</label>
+			<select class="form-control" ng-options="option.SortValue as (option.Display | xlat) for option in currentCategory.SortOptions" ng-model="sort">
+			  <option value=""></option>
+			</select>
+			<i class="fa fa-sort" />
+		  </div>
+		</div>
+		<ul style="display: flex;justify-content: center;flex-wrap: wrap;">
+		  <loadingindicator ng-show="searchLoading" title="{{'Please wait while we fetch all products' | r | xlat}}" />
+		  <li class="inline gallery" id="451_lst_prod" ng-repeat="product in products | paginate:(settings.currentPage-1) * settings.pageSize | limitTo:settings.pageSize | orderBy:sorter:direction" style="margin: 20px;">
+			<div class="well" style="border:none;border-radius: 30px;">
+			  <shortproductviewgallery p="product" user="user" />
+			</div>
+		  </li>
+		</ul>
+	  </nav>
+	</div>
+	<div ng-show="productCount > settings.pageSize">
+	  <pagination page="settings.currentPage" max-size="10" rotate="false" boundary-links="true" total-items="productCount" items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}"
+		first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
+	</div>
+  </div>
+  
+  <!-- promo side nav -->
+  <div class="" ng-show="currentCategory.InteropID === 'adt_apparel' || currentCategory.InteropID === 'adt_men' || currentCategory.InteropID === 'adt_women' || currentCategory.InteropID === 'adt_unisex' || currentCategory.InteropID === 'adt_polos' || currentCategory.InteropID === 'adt_outer' || currentCategory.InteropID === 'adt_winter' || currentCategory.InteropID === 'adt_acc' || currentCategory.InteropID === 'adt_backpacks'">
+	<div>
+	  <a href back-step class="back" style="text-decoration: none;">
+		<button class="btn btn-info btn-block btn-md text-center add-to-cart-button apparel-btn" style="width: 100px;"><i class="fa fa-arrow-left navArrow"></i> Back</button>
+	  </a>
+	</div>
+	<ul class="cat-ul">
+	  <li>
+		<div class="col-xs-12 col-sm-12 col-md-3 col-lg-2" style="min-width: 197px;">
+		  <div class="">
+			<h2 class="promo-cat">CATEGORIES</h2>
+		  </div>
+		  <hr class="divider">
+		  
+		  <div style="display: inline-flex;">
+			<a href="https://www.adtbrandstore.com/store/catalog/adt_apparel">
+			  <button class="promo-button" type="button">
+				<label class="promo-label" for="img1">
+				  <img class="promo-img" ng-hide="isActive('catalog/adt_apparel')" src="https://swagup-static.swagup.com/platform/media/form/bonus-items.svg" alt="All Items">
+				  <img class="promo-img-blue" ng-show="isActive('catalog/adt_apparel')" src="https://swagup-static.swagup.com/platform/media/form/Bonus_items_94eqPH8.svg" alt="All Items">
+				  <span class="promo-text" ng-if="!isActive('catalog/adt_apparel')">All Apparel</span>
+				  <span class="promo-text" ng-if="isActive('catalog/adt_apparel')" style="color: #0061AA;padding-top: 8px;">All Apparel</span>
+				</label>
+			  </button>
+			</a>
+		  </div>
+		  <br />
+  
+		  <div style="display: inline-flex;">
+			<a href="https://www.adtbrandstore.com/store/catalog/adt_men">
+			  <button class="promo-button" type="button">
+				<label class="promo-label" for="img2">
+				  <img class="promo-img" ng-hide="isActive('catalog/adt_men')" src="https://thumbprint.com/four51_images/pods/mens-02.svg" alt="Men">
+				  <img class="promo-img-blue" ng-show="isActive('catalog/adt_men')" src="https://thumbprint.com/four51_images/ADT/mens-Blue-02.svg" alt="Men">
+				  <span class="promo-text" ng-if="!isActive('catalog/adt_men')">Men</span>
+				  <span class="promo-text" ng-if="isActive('catalog/adt_men')" style="color: #0061AA;padding-top: 8px;">Men</span>
+				</label>
+			  </button>
+			</a>
+		  </div>
+		  <br />
+  
+		  <div style="display: inline-flex;">
+			<a href="https://www.adtbrandstore.com/store/catalog/adt_women">
+			  <button class="promo-button" type="button">
+				<label class="promo-label" for="img3">
+				  <img class="promo-img" ng-hide="isActive('catalog/adt_women')" src="https://thumbprint.com/four51_images/pods/womens-02.svg" alt="Women">
+				  <img class="promo-img-blue" ng-show="isActive('catalog/adt_women')" src="https://thumbprint.com/four51_images/ADT/womens-blue-02.svg" alt="Women">
+				  <span class="promo-text" ng-if="!isActive('catalog/adt_women')">Women</span>
+				  <span class="promo-text" ng-if="isActive('catalog/adt_women')" style="color: #0061AA;padding-top: 8px;">Women</span>
+				</label>
+			  </button>
+			</a>
+		  </div>
+		  <br />
+  
+		  <!-- <div style="display: inline-flex;">
+			<a href="https://www.adtbrandstore.com/store/catalog/adt_unisex">
+			  <button class="promo-button" type="button">
+				<label class="promo-label" for="img6">
+				  <img class="promo-img" ng-hide="isActive('catalog/adt_unisex')" src="https://thumbprint.com/four51_images/pods/mens_shirt.svg" alt="Unisex">
+				  <img class="promo-img-blue" ng-show="isActive('catalog/adt_unisex')" src="https://thumbprint.com/four51_images/ADT/mens_shirt-blue.svg" alt="Unisex">
+				  <span class="promo-text" ng-if="!isActive('catalog/adt_unisex')">Unisex Tees</span>
+				  <span class="promo-text" ng-if="isActive('catalog/adt_unisex')" style="color: #0061AA;padding-top: 8px;">Unisex Tees</span>
+				</label>
+			  </button>
+			</a>
+		  </div>
+		  <br />
+  
+		  <div style="display: inline-flex;">
+			<a href="https://www.adtbrandstore.com/store/catalog/adt_polos">
+			  <button class="promo-button" type="button">
+				<label class="promo-label" for="img10">
+				  <img class="promo-img" ng-hide="isActive('catalog/adt_polos')" src="https://thumbprint.com/four51_images/pods/womens_polo_grey.svg" alt="Polos">
+				  <img class="promo-img-blue" ng-show="isActive('catalog/adt_polos')" src="https://thumbprint.com/four51_images/ADT/womens_polo-blue.svg" alt="Polos">
+				  <span class="promo-text" ng-if="!isActive('catalog/adt_polos')">Polos</span>
+				  <span class="promo-text" ng-if="isActive('catalog/adt_polos')" style="color: #0061AA;padding-top: 8px;">Polos</span>
+				</label>
+			  </button>
+			</a>
+		  </div>
+		  <br /> -->
+  
+		  <div style="display: inline-flex;">
+			<a href="https://www.adtbrandstore.com/store/catalog/adt_outer">
+			  <button class="promo-button" type="button">
+				<label class="promo-label" for="img4">
+				  <img class="promo-img" ng-hide="isActive('catalog/adt_outer')" src="https://thumbprint.com/four51_images/pods/sweater.svg" alt="Outerwear">
+				  <img class="promo-img-blue" ng-show="isActive('catalog/adt_outer')" src="https://thumbprint.com/four51_images/ADT/sweater-blue.svg" alt="Outerwear">
+				  <span class="promo-text" ng-if="!isActive('catalog/adt_outer')">Outerwear</span>
+				  <span class="promo-text" ng-if="isActive('catalog/adt_outer')" style="color: #0061AA;padding-top: 8px;">Outerwear</span>
+				</label>
+			  </button>
+			</a>
+		  </div>
+		  <br />
+  
+		  <!--<div style="display: inline-flex;">
+			<a href="https://www.adtbrandstore.com/store/catalog/adt_winter">
+			  <button class="promo-button" type="button">
+				<label class="promo-label" for="img5">
+				  <img class="promo-img" ng-hide="isActive('catalog/adt_winter')" src="https://thumbprint.com/four51_images/pods/hoodie-01.svg" alt="Winter Gear">
+				  <img class="promo-img-blue" ng-show="isActive('catalog/adt_winter')" src="https://thumbprint.com/four51_images/ADT/hoodie-blue-01.svg" alt="Winter Gear">
+				  <span class="promo-text" ng-if="!isActive('catalog/adt_winter')">Winter Gear</span>
+				  <span class="promo-text" ng-if="isActive('catalog/adt_winter')" style="color: #0061AA;padding-top: 8px;">Winter Gear</span>
+				</label>
+			  </button>
+			</a>
+		  </div>
+		  <br />-->
+  
+		  <!-- <div style="display: inline-flex;">
+			<a href="https://www.adtbrandstore.com/store/catalog/adt_acc">
+			  <button class="promo-button" type="button">
+				<label class="promo-label" for="img7">
+				  <img class="promo-img" ng-hide="isActive('catalog/adt_acc')" src="https://swagup-static.swagup.com/platform/media/form/hats.svg" alt="Accessories">
+				  <img class="promo-img-blue" ng-show="isActive('catalog/adt_acc')" src="https://thumbprint.com/four51_images/ADT/hats-blue-01.svg" alt="Accessories">
+				  <span class="promo-text" ng-if="!isActive('catalog/adt_acc')">Accessories</span>
+				  <span class="promo-text" ng-if="isActive('catalog/adt_acc')" style="color: #0061AA;padding-top: 8px;">Accessories</span>
+				</label>
+			  </button>
+			</a>
+		  </div>
+		  <br /> -->
+  
+		  <!-- <div style="display: inline-flex;">
+			<a href="https://www.adtbrandstore.com/store/catalog/adt_backpacks">
+			  <button class="promo-button" type="button" style="padding-left: 6px;">
+				<label class="promo-label" for="img8">
+				  <img class="promo-img" ng-hide="isActive('catalog/adt_backpacks')" src="https://swagup-static.swagup.com/platform/media/form/backpacks.svg" alt="Misc" style="height: 43px;">
+				  <img class="promo-img-blue" ng-show="isActive('catalog/adt_backpacks')" src="https://thumbprint.com/four51_images/ADT/backpacks-adt_blue.svg" alt="Misc" style="height: 43px;left: 4px;">
+				  <span class="promo-text" ng-if="!isActive('catalog/adt_backpacks')" style="padding-top: 14px;">Backpacks</span>
+				  <span class="promo-text" ng-if="isActive('catalog/adt_backpacks')" style="color: #0061AA;padding-top: 8px;">Backpacks</span>
+				</label>
+			  </button>
+			</a>
+		  </div> -->
+		</div>
+	  </li>
+	  <li>
+		<div ng-show="productCount > settings.pageSize">
+		  <pagination page="settings.currentPage" max-size="100" rotate="false" boundary-links="true" total-items="productCount" items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}"
+			first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
+		</div>
+		<div class="panel-product-list no-panels" ng-show="currentCategory.InteropID">
+		  <nav class="nav">
+			<div class="row view-form-icon" ng-show="currentCategory.SortOptions.length > 0">
+			  <div class="col-xs-12">
+				<label>{{'Sort by' | r | xlat}}</label>
+				<select class="form-control" ng-options="option.SortValue as (option.Display | xlat) for option in currentCategory.SortOptions" ng-model="sort">
+				  <option value=""></option>
+				</select>
+				<i class="fa fa-sort" />
+			  </div>
+			</div>
+			<ul style="display: flex;justify-content: center;flex-wrap: wrap;">
+			  <loadingindicator ng-show="searchLoading" title="{{'Please wait while we fetch all products' | r | xlat}}" />
+			  <li class="inline gallery" id="451_lst_prod" ng-repeat="product in products | paginate:(settings.currentPage-1) * settings.pageSize | limitTo:settings.pageSize | orderBy:sorter:direction" style="margin: 20px;">
+				<div class="well" style="border:none;border-radius: 30px;">
+				  <shortproductviewgallery p="product" user="user" />
+				</div>
+			  </li>
+			</ul>
+		  </nav>
+		</div>
+		<div ng-show="productCount > settings.pageSize">
+		  <pagination page="settings.currentPage" max-size="10" rotate="false" boundary-links="true" total-items="productCount" items-per-page="settings.pageSize" direction-links="true" previous-text="{{'Previous' | xlat}}" next-text="{{'Next' | xlat}}"
+			first-text="{{'First' | xlat}}" last-text="{{'Last' | xlat}}"></pagination>
+		</div>
+	  </li>
+	</ul>
+  </div>
