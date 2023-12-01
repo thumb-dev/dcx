@@ -1,38 +1,77 @@
-<section>
-    <nav id="451qa_nav_hdr" class="nav">
-        <!--<ul>
+<style>
+.panel-nav ul li:hover {
+
+    text-decoration: none;
+    border-radius: 4px;
+}
+.panel-nav ul li.active {
+     background-color: white;
+}
+.panel-nav ul li a:hover {
+    color: #ff6700;
+}
+.top-level-cat:hover {
+    text-decoration: none;
+}
+.panel-nav ul li.active {
+    background-color: white;
+}
+.panel-nav ul li.active a {
+    color: #ff6700;
+}
+.panel-nav ul li ul li {
+ /* background-color: #50bda7; */
+    margin-left: 10px;
+}
+.menuSubCat {
+    padding-left: 10px;
+}
+.panel-nav ul li ul li a {
+    color: #333333;
+    text-decoration: none;
+}
+.panel-nav ul li ul li a:hover {
+    background-color: white;
+}
+.panel-nav ul li ul li a.active {
+    color: #ff6700 !important;
+}
+.panel-nav ul li ul:hover {
+    background:white !important;
+}
+</style>
+<section style="margin-top:20px;">
+    <!-- <nav id="451qa_nav_hdr" class="nav">
+    <breadcrumbs ng-hide="isActive('catalog')"></breadcrumbs>
+        <ul class="">
             <li class="hidden-sm hidden-xs">
                 <span ng-click="toggleNav()"><i class="fa fa-bars" ng-class="{ 'text-info': navStatus.visible }"></i></span>
             </li>
             <li>
                 <span id="451_lbl_curcat" class="text-primary" ng-bind-html="currentCategory.Name || '  {{'Categories' | r | xlat}}'"></span>
             </li>
-            <li class="pull-right">
-                <a href="search">
-                    <span><i class="fa fa-search text-primary"></i></span>
-                </a>
-            </li>
-        </ul>-->
-    </nav>
-    <div class="row">
-        <aside class="col-md-3 visible-md visible-lg" ng-if="navStatus.visible">
-            <div class="panel panel-default panel-nav">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        {{'Category List' | r | xlat}}
-                    </h3>
+        </ul>
+    </nav> -->
+    <div class="row" style="margin-top: 10px;">
+        <!-- <aside class="col-md-2 visible-md visible-lg" ng-if="navStatus.visible">
+            <div class=" panel-nav">
+                <div class="">
+                    <h2 class="side-nav-title">
+                        {{'Categories' | r | xlat}}
+                    </h2>
                 </div>
+                <hr class="divider">
                 <nav class="nav 451qa_sidenav panel-body">
                     <ul>
                         <categorycollapse tree='tree'></categorycollapse>
                     </ul>
                 </nav>
             </div>
-        </aside>
-        <div ng-class="{ 'col-md-9': navStatus.visible, 'col-md-12': !navStatus.visible }" >
+        </aside> -->
+        <div ng-class="{ 'col-md-12': navStatus.visible, 'col-md-12': !navStatus.visible }" >
         
-            <breadcrumbs></breadcrumbs>
-
+            <breadcrumbs ng-hide="isActive('catalog') || currentCategory.InteropID === 'adt_apparel' || currentCategory.InteropID === 'adt_men' || currentCategory.InteropID === 'adt_women' || currentCategory.InteropID === 'adt_unisex' || currentCategory.InteropID === 'adt_polos' || currentCategory.InteropID === 'adt_outer' || currentCategory.InteropID === 'adt_winter' || currentCategory.InteropID === 'adt_acc' || currentCategory.InteropID === 'adt_backpacks'"></breadcrumbs>
+        
             <categorylistview></categorylistview>
 
             <loadingindicator ng-show="productLoadingIndicator" title="{{'Please wait while we fetch all products' | r | xlat}}"/>
@@ -40,5 +79,8 @@
             <productlistview></productlistview>
 
         </div>
+            <div class="description text-left">
+            	<p ng-bind-html="trusted(currentCategory.Description)"></p>
+            </div>
     </div>
 </section>
