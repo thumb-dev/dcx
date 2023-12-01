@@ -3,6 +3,17 @@ four51.app.directive('orderdetails', function() {
 		restrict: 'AE',
 		templateUrl: 'partials/controls/orderDetails.html',
 		controller: ['$scope', 'Address', function($scope, Address) {
+			function addDays(date, days) {
+			  var copy = new Date(Number(date));
+			  copy.setDate(date.getDate() + days);
+			  return copy;
+			}	
+			var currentDate = new Date();
+			var futureDate = addDays(currentDate, 5); // Add 5 days
+			$scope.options = {
+				'minDate': futureDate
+			};
+
 			if ($scope.isEditforApproval) {
 				var exists = false;
 				angular.forEach($scope.user.CostCenters, function(cc) {
