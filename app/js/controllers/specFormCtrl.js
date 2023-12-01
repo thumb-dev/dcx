@@ -1,5 +1,5 @@
-four51.app.controller('SpecFormCtrl', ['$scope', '$location', '$route', '$routeParams', '$window', 'ProductDisplayService', 'Variant', 'Order',
-function ($scope, $location, $route, $routeParams, $window, ProductDisplayService, Variant, Order) {
+four51.app.controller('SpecFormCtrl', ['$scope', '$location', '$route', '$routeParams', 'Nav', '$window', 'ProductDisplayService', 'Variant', 'Order',
+function ($scope, $location, $route, $routeParams, Nav, $window, ProductDisplayService, Variant, Order) {
     $scope.isEditforApproval = $routeParams.orderID && $scope.user.Permissions.contains('EditApprovalOrder');
     $scope.EditingLineItem = (typeof($routeParams.lineItemIndex) != 'undefined');
     if ($scope.EditingLineItem) $scope.LineItemIndex = $routeParams.lineItemIndex;
@@ -10,6 +10,18 @@ function ($scope, $location, $route, $routeParams, $window, ProductDisplayServic
         });
     }
     else {init()}
+    
+    // panel-nav
+    $scope.navStatus = Nav.status;
+	//default the category panel to be collapsed
+	$scope.navStatus.visible = false;
+
+    $scope.toggleNav = Nav.toggle;
+
+    $scope.searchTerm = $routeParams.searchTerm;
+    console.log('string routeParams ', $routeParams);
+
+    // ----
 
     function init() {
         $scope.variantErrors = [];
