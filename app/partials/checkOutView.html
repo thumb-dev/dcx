@@ -1,13 +1,13 @@
-<section class="marginTop">
+<section class="marginTop" style="margin-top:20px;">
     <loadingindicator ng-show="displayLoadingIndicator" title="{{'Please wait while we update your order' | r | xlat}}" />
     <div class="col-md-4 col-md-offset-1 col-md-push-7 col-collapse">
         <ordersummary />
     </div>
 
     <div class="col-md-7 col-md-pull-5 col-collapse" ng-show="currentOrder && currentOrder.isEditable" ng-click="showSuccessAlert = false">
-        <orderdetails ng-show="hasOrderConfig" />
+        <orderdetails/>
         <ordershipping />
-        <orderbilling ng-show="currentOrder.BillingEnabled" />
+        <orderbilling ng-show="currentOrder.BillingEnabled"/>
         <orderapprovals ng-show="currentOrder.Approvals" />
         <div class="navbar-fixed-bottom">
             <div class="view-response-message alert-success text-center" alert-show="actionMessage">
@@ -27,7 +27,7 @@
                             {{cart_order.$error.required.length + cart_billing.$error.required.length + cart_shipping.$error.required.length + cart_billing.$error.paymentMethod.length}}
                         </span>
                     </li>
-                    <li class="text-center">
+                    <li class="text-center hidden">
                         <ul ng-class="{'one': errorSection == 'open', 'two': errorSection == '' }">
                             <li ng-if="cart_order.orderid.$invalid">{{'Enter an ' + ('order' | r) + ' ' + ('ID' | r) | xlat}}</li>
                             <li ng-repeat="field in currentOrder.OrderFields">
@@ -47,15 +47,15 @@
                                 {{'You have not been granted permission to create a ' + ('Shipping' | r) + ' ' + ('Address' | r) + ', and no ' + ('Shipping' | r) + ' ' + ('Addresses' | r) + ' have been assigned to you. Therefore, you are not allowed to place this ' + ('Order' | r) + ' at this time' | xlat}}
                         </ul>
                     </li>
-                    <li class="text-center">
+                    <!--<li class="text-center">
                         <a href ng-show="(cart_order.$error.required.length + cart_billing.$error.required.length + cart_shipping.$error.required.length + cart_billing.$error.paymentMethod.length) > 1">
                             <i class="fa fa-caret-down" ng-click="errorSection = 'open'" ng-hide="errorSection == 'open'"></i>
                             <i class="fa fa-caret-up" ng-click="errorSection = ''" ng-show="errorSection == 'open'"></i>
                         </a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
-            <orderbuttons view="checkout" continue="true"></orderbuttons>
+            <!--<orderbuttons view="checkout" continue="true"></orderbuttons>-->
         </div>
     </div>
 </section>
