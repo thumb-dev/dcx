@@ -1,5 +1,5 @@
-four51.app.controller('Four51Ctrl', ['$scope', '$route', '$location', '$451', 'User', 'Order', 'Security', 'OrderConfig', 'Category', 'AppConst','XLATService', 'GoogleAnalytics',
-function ($scope, $route, $location, $451, User, Order, Security, OrderConfig, Category, AppConst, XLATService, GoogleAnalytics) {
+four51.app.controller('Four51Ctrl', ['$scope', '$route', '$location', 'Punchout', '$451', 'User', 'Order', 'Security', 'OrderConfig', 'Category', 'AppConst','XLATService', 'GoogleAnalytics',
+function ($scope, $route, $location, Punchout, $451, User, Order, Security, OrderConfig, Category, AppConst, XLATService, GoogleAnalytics) {
 	$scope.AppConst = AppConst;
 	$scope.scroll = 0;
 	$scope.isAnon = $451.isAnon; //need to know this before we have access to the user object
@@ -38,6 +38,23 @@ function ($scope, $route, $location, $451, User, Order, Security, OrderConfig, C
         }
         return result;
     };
+    
+        $scope.isActivePartialPath = function(path) {
+		var cur_path = $location.path().replace('/', '');
+		var result = false;
+
+		if (path instanceof Array) {
+				angular.forEach(path, function(p) {
+						if ((cur_path.search(p) >= 0) && !result)
+								result = true;
+				});
+		}
+		else {
+				if (cur_path.search(path) >= 0)
+						result = true;
+		}
+		return result;
+};
 
     // extension of above isActive in path
     $scope.isInPath = function(path) {
@@ -52,6 +69,9 @@ function ($scope, $route, $location, $451, User, Order, Security, OrderConfig, C
         }
         return result;
     };
+    
+    //Punchout
+    $scope.PunchoutSession = Punchout.punchoutSession;
 
 	function init() {
 		if (Security.isAuthenticated()) {
@@ -59,13 +79,40 @@ function ($scope, $route, $location, $451, User, Order, Security, OrderConfig, C
 				$scope.user = user;
         $scope.adminMember = false;
 				angular.forEach($scope.user.Groups, function(group){
-					if(group.Name == "Admin"){
-						$scope.adminMember = true;
-					}
+					if(group.Name == "Business Card"){
+						$scope.busCardUser = true;
+					} else if (group.Name == "CHS Employees") {
+                        $scope.chsUser = true;
+                    } else if (group.Name == "Admin") {
+                        $scope.adminMember = true;
+                    } else if (group.Name == "Residential and Business") {
+                        $scope.resiMember = true;
+                    }
 				});
-        
+
                 $scope.user.Culture.CurrencyPrefix = XLATService.getCurrentLanguage(user.CultureUI, user.Culture.Name)[1];
                 $scope.user.Culture.DateFormat = XLATService.getCurrentLanguage(user.CultureUI, user.Culture.Name)[2];
+                
+        //         var setLocation = store.get('locationSet');
+        // 		if (!setLocation) {
+        // 		  store.set('locationSet', true)
+        // 		  $location.path('catalog/adt_shop');
+        // 		} 
+
+                //Punchout
+                var punchoutConfigured = store.get('punchoutconfig');
+                if(!punchoutConfigured){
+                	angular.forEach($scope.user.Permissions,function(permission){
+	                    if(permission == "PunchoutUser"){
+	                        $scope.PunchoutUser = true;
+	 
+	                        if($scope.PunchoutSession && $scope.PunchoutSession.PunchOutOperation == 'Edit') $location.path('cart');
+	                        else if($scope.PunchoutSession && $scope.PunchoutSession.PunchoutLandingCategory) $location.path('catalog/' + $scope.PunchoutSession.PunchoutLandingCategory);
+	                        else if($scope.PunchoutSession && $scope.PunchoutSession.PunchoutLandingProduct) $location.path('product/' + $scope.PunchoutSession.PunchoutLandingProduct);
+	                        store.set('punchoutconfig','true');
+	                    }
+	                });
+                }
 
 	            if (!$scope.user.TermsAccepted)
 		            $location.path('conditions');
