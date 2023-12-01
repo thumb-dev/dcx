@@ -17,11 +17,12 @@ function productsearchinput() {
     function searchTemplate() {
         return [
             '<form name="productSearchInput" ng-submit="executeSearch()">',
-            '<div class="view-form-icon searchFieldForm">',
-            '<div class="input-group searchField" style="margin-top:3%;">',
-            '<input type="text" class="form-control searchInput" placeholder="{{\'Search\' | r}} {{\'Products\' | r}}" ng-model="productSearchTerm"/>',
+            '<div class="view-form-icon">',
+            '<div class="input-group" style="margin:0 0 10px;">',
+            '<input type="text" class="form-control" placeholder="{{\'Search\' | r}} {{\'Products\' | r}}" ng-model="productSearchTerm" style="border-top-left-radius: 24px;border-bottom-left-radius: 24px;"/>',
+            '<i class="fa fa-search"></i>',
             '<span class="input-group-btn">',
-            '<button type="submit" class="btn btn-primary searchButton" ng-disabled="productSearchTerm == null || productSearchTerm == \'\'"><i class="fa fa-search"></i></button>',
+            '<button type="submit" class="btn btn-default searchButton" ng-disabled="productSearchTerm == null || productSearchTerm == \'\'" style="background-color: #313131;border:#313131;">{{\'Search\' | r}}</button>',
             '</span>',
             '</div>',
             '</div>',
@@ -40,6 +41,7 @@ function productsearchinputnav() {
 
     function searchNavTemplate() {
         return [
+            '<style>.navbar .container .navbar-nav.pull-right li a i.fa-search,.navbar .container-view .navbar-nav.pull-right li a i.fa-search{border-radius:0;border:none;text-align:center;padding:0 10px;margin-top:0}.product-search-display{position:fixed;top:-100%;left:0;right:0;height:60px;background-color:#00A3B2;padding:10px 5px;opacity:0;z-index:1030;transition:all 300ms;-moz-transition:all 300ms;-webkit-transition:all 300ms}.product-search-display.active{top:0;opacity:1;transition:all 300ms;-moz-transition:all 300ms;-webkit-transition:all 300ms}.product-search-display .fa-angle-double-up{cursor:pointer;margin-top:5px}</style>',
             '<div class="product-search-display" ng-class="{\'active\':displayProductSearch}">',
             '<div class="row">',
             '<div class="col-xs-10 col-md-11">',
@@ -49,7 +51,7 @@ function productsearchinputnav() {
             '<input type="text" class="form-control" placeholder="{{\'Search\' | r}} {{\'Products\' | r}}" ng-model="productSearchTerm"/>',
             '<i class="fa fa-search"></i>',
             '<span class="input-group-btn">',
-            '<button type="submit" class="btn btn-primary searchButton" ng-disabled="productSearchTerm == null || productSearchTerm == \'\'"><i class="fa fa-search"></i></button>',
+            '<button type="submit" class="btn btn-default searchButton" ng-disabled="productSearchTerm == null || productSearchTerm == \'\'"><i class="fa fa-search"></i></button>',
             '</span>',
             '</div>',
             '</div>',
@@ -62,7 +64,7 @@ function productsearchinputnav() {
             '</div>',
             '<ul class="nav navbar-nav pull-right">',
             '<li class="search-toggle">',
-            '<a href ng-click="displayProductSearch = true;">',
+            '<a class="nav-link" href ng-click="displayProductSearch = true;">',
             '<i class="fa fa-search"></i>',
             '</a>',
             '</li>',
