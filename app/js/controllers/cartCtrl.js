@@ -1,5 +1,27 @@
-four51.app.controller('CartViewCtrl', ['$scope', '$routeParams', '$location', '$451', 'Order', 'OrderConfig', 'User',
-function ($scope, $routeParams, $location, $451, Order, OrderConfig, User) {
+four51.app.controller('CartViewCtrl', ['$scope', '$routeParams', '$location', '$451', 'Order', 'OrderConfig', 'User', 'Punchout', '$sce', '$timeout', '$window',
+function ($scope, $routeParams, $location, $451, Order, OrderConfig, User, Punchout, $sce, $timeout, $window) {
+	//Punchout
+	if($scope.PunchoutUser){
+		$scope.punchouturl = $sce.trustAsResourceUrl(Punchout.punchoutSession.PunchOutPostURL);
+	}
+	$scope.submitPunchoutOrder = function () {
+		$scope.saveChanges(function (data) {
+			Punchout.save($scope.currentOrder.ID, function(){
+				Punchout.getForm(function (form) {
+					$scope.punchoutForm = form;
+					$timeout(function () {
+						store.remove('punchoutconfig');
+						$window.document.getElementById('punchoutForm').submit();
+					}, 10);
+				},function (err) {
+					$scope.errorMessage = err.Message;
+				});
+			},function(ex){
+				$scope.errorMessage = ex.Message;
+			});
+		}, true);
+	};
+    
 	$scope.isEditforApproval = $routeParams.id != null && $scope.user.Permissions.contains('EditApprovalOrder');
 	if ($scope.isEditforApproval) {
 		Order.get($routeParams.id, function(order) {
