@@ -70,13 +70,13 @@
                                     {{'Contact Us' | r | xlat}}
                                 </a>
                             </li>
-                            <li>
+                            <li ng-show="user.Type!='TempCustomer' && !user.Permissions.contains('PunchoutUser')" class="logout">
                                 <a href="#" neworder ng-if="user.Permissions.contains('MultipleShoppingCart') && currentOrder" class="neworder" ng-click="newOrderLoadingIndicator = true;startNewOrder()">
                                     {{"Start" | r | xlat}} {{"New" | r | xlat}} {{"Order" | r | xlat}}
                                 </a>
                             </li>
                             <li class="divider" ng-show="user.Type!='TempCustomer' || AppConst.debug"></li>
-                            <li ng-show="user.Type!='TempCustomer'" class="logout">
+                            <li ng-show="user.Type!='TempCustomer'" class="logout" ng-hide="PunchoutUser === true">
                                 <a href="#"  class="451_btn_logout accountHover" ng-click="Logout()">
                                     <i class="fa fa-power-off text-danger"></i>
                                     <span>{{'Log Out' | r | xlat}}</span>
