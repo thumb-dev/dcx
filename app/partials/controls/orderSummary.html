@@ -1,14 +1,13 @@
 <style>
   .order-summary-container {
-    background-color: #d2e8ee;
+    background-color: #ededed;
+    border-radius: 24px;
   }
   .order-summary-inner-container {
     padding: 30px;
   }
   .order-summary-header {
     color: #000000;
-    font-family: 'Lato',sans-serif;
-
     font-size: 32px;
     font-weight: bold;
     letter-spacing: -0.59px;
@@ -16,8 +15,6 @@
   }
   .order-summary-body {
     color: #000000;
-    font-family: 'Lato',sans-serif;
-
     font-size: 20px;
     letter-spacing: -0.37px;
     line-height: 24px;
@@ -27,8 +24,6 @@
     border-top: 1px solid #4E2683;
     padding-top: 30px;
     color: #000000;
-    font-family: 'Lato',sans-serif;
-
     font-size: 25px;
     font-weight: 800;
     letter-spacing: -0.46px;
@@ -37,7 +32,6 @@
   .checkoutBtn-sum {
     height: 61px;
     width: -webkit-fill-available;
-    font-family: 'Lato',sans-serif;
     font-size: 20px !important;
     font-weight: 800;
     letter-spacing: -0.31px;
@@ -50,8 +44,7 @@
   .checkoutBtn-save {
     height: 61px;
     width: -webkit-fill-available;
-    color: #4E2683;
-    font-family: 'Lato',sans-serif;
+    color: #00A3B2;
     font-size: 20px !important;
     font-weight: 800;
     letter-spacing: -0.31px;
@@ -69,27 +62,24 @@
     height: 61px;
     width: -webkit-fill-available;
     color: white;
-    font-family: 'Lato',sans-serif;
     font-size: 20px !important;
     font-weight: 800;
     letter-spacing: -0.31px;
     line-height: 20px;
     text-align: center;
-    background: #208fad;
-    border: #208fad;
+    background: black;
+    border: black;
     margin-bottom: 15px;
   }
 .checkoutBtn-continue:hover {
-  background: #1c809b;
-  border: #1c809b;
+  background: #1775ab;
+  border: #1775ab;
   color:white;
 }
   .checkoutBtn-cancel {
     height: 61px;
     width: -webkit-fill-available;
     color: white;
-    font-family: 'Lato',sans-serif;
-
     font-size: 20px !important;
     font-weight: 800;
     letter-spacing: -0.31px;
@@ -145,6 +135,9 @@
         <span class="text-info">{{'Tax' | r | xlat}}</span>
         <span class="pull-right">{{currentOrder.TaxCost || 0 | culturecurrency}}</span>
       </p>
+      <!--<div class="alert alert-warning" role="alert" style="text-align:center;margin-bottom: 0;" ng-hide="adtDealer === true || multiFamily === true || adtBuilderKit === true">
+         Don't forget to use coupon code <strong>WELCOME</strong> on your first order.
+       </div>-->
       <div ng-show="user.Permissions.contains('ViewPromotions')">
         <div ng-show="!currentOrder.Coupon">
           <div class="form-group view-form-icon">
@@ -153,15 +146,15 @@
               <div class="input-group">
                 <input class="form-control" type="text" ng-model="currentOrder.CouponCode" placeholder="{{('Promotion' | r) + ' ' + ('Code' | r) | xlat}}" autocomplete="off" />
                 <span class="input-group-btn">
-                  <button type="button" class="btn btn-success" ng-click="applyCoupon()"><i class="fa fa-check"></i></button>
+                  <button type="button" class="btn btn-success" ng-click="applyCoupon()" style="border-bottom-right-radius: 24px;border-top-right-radius: 24px;"><i class="fa fa-check"></i></button>
                 </span>
               </div>
               <i class="fa fa-question-circle"></i>
             </div>
           </div>
         </div>
-        <p ng-show="currentOrder.Coupon">
-          <span class="text-info">{{currentOrder.Coupon.Label}}:</span>{{currentOrder.Coupon.OrderDiscount * -1 | culturecurrency}}<br />
+        <p ng-show="currentOrder.Coupon" class="alert alert-primary" role="alert" style="margin-top: 10px;color: #004085;background-color: #cce5ff;border-color: #b8daff;border-radius: 24px;">
+          <span style="font-weight: 500;">{{user.FirstName}}, </span><span>{{currentOrder.Coupon.Label}}</span><br />
         </p>
         <div ng-show="currentOrder.Coupon">
           <button type="button" class="btn btn-danger pull-right" ng-click="removeCoupon()">Remove {{'Coupon' | r | xlat}}</button>
