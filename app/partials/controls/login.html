@@ -3,8 +3,8 @@
     <section class="order-cloud">
         <div id="login_box">
             <div id="login_form" class="animated bounceIn">
-                <form class="form-signin" ng-submit="login()" name="login_form" style="background:none no-repeat scroll 0% 0%;background-color:white;border: 1px solid #1e8fad;">
-                    <p class="animated fadeIn text-center"><img src="https://thumbprint.com/four51_images/USDerma_Logo.png" height="100%" width="100%" style="" /></p>
+                <form class="form-signin" ng-submit="login()" name="login_form" style="background-color: white; border: 1px solid black;margin-top: 200px; padding: 30px;">
+                    <p class="animated fadeIn text-center"><img src="https://thumbprint.com/four51_images/FullColor_Primary.svg" height="100%" width="100%" style="" /></p>
                     <p id="451qa_msg_login" ng-show="loginMessage" ng-bind-html="loginMessage" class="alert alert-info"></p>
                     <div>
                         <div class="view-form-icon" ng-show="!showEmailHelp && !PasswordReset">
@@ -21,7 +21,7 @@
                         </div>
                         <div>
                             <p class="alert alert-info" ng-show="showEmailHelp && (!EmailNotFoundException || !PasswordSecurityException)">
-                                If you would like to be reminded of your {{'Username' | r}} or have the option to reset your {{'Password' | r}}, please provide your email address and your log on information will be emailed to you immediately.
+                                Please enter the email address associated with your account. If it exists, you will be sent an email containing your username and an option to reset your password. Make sure to check your email's spam & junk folders.
                             </p>
 
                             <div class="view-form-icon" ng-show="showEmailHelp">
@@ -73,11 +73,8 @@
                         <input ng-disabled="login_form.$invalid" class="btn btn-large btn-primary btn-block logonBtn" id="451_btn_login" type="submit" value="{{buttonText}}" />
                     </div>
                     <btn class="btn btn-info btn-block" ng-show="!showEmailHelp && !PasswordReset && !EmailNotFoundException && !PasswordSecurityException" ng-click="showEmailHelp = !showEmailHelp; buttonText = 'Submit'" style="">
-                        Need help logging on?
+                        Forgot Password?
                     </btn>
-
-                        <a class="btn btn-info btn-block userBtn" href="https://www.four51.com/UI/AutoLogon.hcf?id=15e2889e-054c-406a-905d-ffdacf0f1cba" style="text-decoration: none;">Need An Account?</a>
-
                 </form>
             </div>
         </div>
