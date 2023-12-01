@@ -59,7 +59,6 @@ function ($scope, $rootScope, $location, User, Address, Resources) {
 
     $scope.makeAddress = function(addressobj){
         $scope.address.AddressName = addressobj.name;
-        $scope.address.AddressName = $scope.address.AddressName.replace(/[@&]/g, "and").replace(/[!#$%^*]/g, '');
         addressobj.formatted_phone_number ? $scope.address.Phone = addressobj.formatted_phone_number : '';
             angular.forEach(addressobj.address_components, function(component){
                 component.types[0] == 'street_number'   ? (streetNum = component.long_name)     : null;
