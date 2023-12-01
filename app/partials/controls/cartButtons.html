@@ -21,8 +21,8 @@
     </li>
     <li>
         <button type="button" class="btn btn-danger checkoutBtn" ng-click="currentOrder.Status == 'AwaitingApproval' ? cancelEdit() : cancelOrder()">
-            <small ng-if="currentOrder.Status != 'AwaitingApproval'">{{('Cancel' | r) + ' ' + ('Order' | r) | xlat}}</small>
-            <small ng-if="currentOrder.Status == 'AwaitingApproval'">{{('Cancel' | r) + ' ' + ('Edit' | r) | xlat}}</small>
+            <small ng-if="currentOrder.Status != 'AwaitingApproval'" style="color:white;">{{('Cancel' | r) + ' ' + ('Order' | r) | xlat}}</small>
+            <small ng-if="currentOrder.Status == 'AwaitingApproval'" style="color:white;">{{('Cancel' | r) + ' ' + ('Edit' | r) | xlat}}</small>
         </button>
     </li>
     <li>
