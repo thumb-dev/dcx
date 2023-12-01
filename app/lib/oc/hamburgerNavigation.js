@@ -21,8 +21,8 @@ function hamburgernavigation() {
         return [
             '<style>',
             //color changes start
-            '.navbar-hamburger .main-toggle i {color:#67cce9;}',
-            'ul.burgers {margin:0; width:100%;}',
+            '.navbar-hamburger .main-toggle i {color:#313131;}',
+            'ul.burgers {margin:0; width:100%;background:#313131;}',
             //color changes end
             'accountnavigation {display:none !important;}',
             '.navbar-hamburger .main-toggle i {font-size:1.8em; left:10px; position:relative; top:10px;}',
@@ -91,6 +91,13 @@ function hamburgernavigation() {
             '<i class="fa fa-shopping-cart"></i>',
             '<span>{{\'Cart\' | r | xlat}}</span>',
             '<span ng-bind="cartCount" class="badge"></span>',
+            '</a>',
+            '</li>',
+            //Insights
+            '<li class="cart" ng-show="adminMember === true">',
+            '<a href="https://insights.thumbprint.com/open-view/2093611000006857945/f65b5c4d0f3796576e5004aac2dc5e39" target="_blank">',
+            '<i class="fa fa-bar-chart-o"></i>',
+            '<span>{{\'Insights\' | r | xlat}}</span>',
             '</a>',
             '</li>',
             //account
