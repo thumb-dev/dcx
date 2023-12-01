@@ -112,28 +112,28 @@ function octitlefield() {
         template: template,
         link: function (scope) {
             String.prototype.toTitleCase = function() {
-                var i, j, str, lowers, uppers;
-                str = this.replace(/\b[\w-\']+/g, function(txt) {
-                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-                });
+              var i, j, str, lowers, uppers;
+              str = this.replace(/\b[\w-\']+/g, function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+              });
 
-                // Certain minor words should be left lowercase unless
-                // they are the first or last words in the string
-                lowers = ['A', 'An', 'The', 'And', 'But', 'Or', 'For', 'Nor', 'As', 'At',
-                    'By', 'For', 'From', 'In', 'Into', 'Near', 'Of', 'On', 'Onto', 'To', 'With'];
-                for (i = 0, j = lowers.length; i < j; i++)
-                    str = str.replace(new RegExp('\\s' + lowers[i] + '\\s', 'g'),
-                        function(txt) {
-                            return txt.toLowerCase();
-                        });
+              // Certain minor words should be left lowercase unless 
+              // they are the first or last words in the string
+              lowers = ['A', 'An', 'The', 'And', 'But', 'Or', 'For', 'Nor', 'As', 'At', 
+              'By', 'For', 'From', 'In', 'Into', 'Near', 'Of', 'On', 'Onto', 'To', 'With'];
+              for (i = 0, j = lowers.length; i < j; i++)
+                str = str.replace(new RegExp('\\s' + lowers[i] + '\\s', 'g'), 
+                  function(txt) {
+                    return txt.toLowerCase();
+                  });
 
-                // Certain words such as initialisms or acronyms should be left uppercase
-                uppers = ['Id', 'Tv'];
-                for (i = 0, j = uppers.length; i < j; i++)
-                    str = str.replace(new RegExp('\\b' + uppers[i] + '\\b', 'g'),
-                        uppers[i].toUpperCase());
+              // Certain words such as initialisms or acronyms should be left uppercase
+              uppers = ['Id', 'Tv'];
+              for (i = 0, j = uppers.length; i < j; i++)
+                str = str.replace(new RegExp('\\b' + uppers[i] + '\\b', 'g'), 
+                  uppers[i].toUpperCase());
 
-                return str;
+              return str;
             }
 
             scope.$watch('customfield.Value', function(val) {
@@ -166,7 +166,6 @@ function octextfield() {
             customfield : '=',
             changed: '=',
             label: '@',
-            autotrim: '@',
             placeholder: '@',
             hidesuffix: '@',
             hideprefix: '@'
@@ -184,7 +183,7 @@ function octextfield() {
             '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
             '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-            '<input class="form-control" ng-trim="{{autotrim || true}}" placeholder="{{placeholder || label || customfield.Label || customfield.Name}}" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" jmask="{{customfield.MaskedInput}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
+            '<input class="form-control" placeholder="{{placeholder || label || customfield.Label || customfield.Name}}" size="{{customfield.Width * .13}}" ng-maxlength="{{customfield.MaxLength}}" jmask="{{customfield.MaskedInput}}" type="text" autocomplete="off" ng-required="{{customfield.Required}}" ng-model="customfield.Value">',
             '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
             '</div>',
             '</div>',
@@ -259,10 +258,10 @@ function ocselectionfield($451) {
             '<span class="input-group-addon"  ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
             '<select class="form-control" ng-init="init()" ng-required="customfield.Required" ng-change="changed()" ng-model="item" ng-options="option.Value for option in customfield.Options" ng-if="customfield.Options">',
             '<option value=""></option></select>',
-            '<input class="form-control" type="text" ng-change="otherChanged()" ng-model="other" ng-show="customfield.isOtherSelected" autocomplete="off" ng-required="customfield.Required && customfield.isOtherSelected" />',
+            '<input class="form-control" type="text" ng-change="otherChanged()" ng-model="other" ng-show="customfield.isOtherSelected" autocomplete="off" ng-required="customfield.Required && customfield.isOtherSelected" style="margin-top:10px;"/>',
             '<span class="input-group-addon"  ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
             '</div>',
-            '<i class="fa fa-edit"></i>',
+
             '</div>',
             '</div>'
         ].join('');
@@ -280,7 +279,7 @@ function ocselectionfield($451) {
             scope.customfield.SelectedOptionID = this.item == null ? null : this.item.ID;
             if (this.item != null) this.item.Selected = true;
 
-            if (this.item != null && this.item.Value.indexOf('Other') > -1 && this.item.ID.indexOf('_other') > -1) {
+            if (this.item != null && this.item.Value.indexOf('Other') > -1 && scope.customfield.AllowOtherValue) {
                 scope.customfield.isOtherSelected = true;
                 this.item.Selected = true;
                 scope.customfield.SelectedOptionID = this.item.ID;
@@ -453,7 +452,8 @@ function ocdatefield($filter) {
             label: '@',
             hidesuffix: '@',
             hideprefix: '@',
-            format: '@'
+            format: '@',
+            options: '='
         },
         restrict: 'E',
         template: template,
@@ -466,7 +466,13 @@ function ocdatefield($filter) {
                 if (!newVal) return;
                 scope.customfield.Date = new Date(getDateFromFormat(scope.customfield.Value, scope.format));
             });
-        }
+        },
+    //     controller: ['$scope', function($scope) {
+    //       console.log('ocdatefield options', $scope.options);
+    //       $scope.doptions = {
+    // 				'minDate': new Date(2019, 10, 20)
+    // 			};
+    //     }]
     };
     return directive;
 
@@ -476,7 +482,7 @@ function ocdatefield($filter) {
             '<label ng-class="{\'required\': customfield.Required}">{{label || customfield.Label || customfield.Name}}</label>',
             '<div ng-class="{\'input-group\':((customfield.Prefix && !hideprefix) || (customfield.Suffix && !hidesuffix))}">',
             '<span class="input-group-addon" ng-if="customfield.Prefix && !hideprefix && !((customfield.Prefix) == \'\')">{{customfield.Prefix}}</span>',
-            '<input is-open="fieldopened" datepicker-popup="{{format}}" class="form-control" type="text" ng-required="customfield.Required" ng-model="customfield.Date"/>',
+            '<input is-open="fieldopened" datepicker-popup="{{format}}" min="{{options.minDate}}" class="form-control" type="text" ng-required="customfield.Required" ng-model="customfield.Date"/>',
             '<span class="input-group-addon" ng-if="customfield.Suffix && !hidesuffix && !((customfield.Suffix) == \'\')">{{customfield.Suffix}}</span>',
             '<i class="fa fa-calendar"></i>',
             '</div>',
@@ -498,12 +504,6 @@ function octimefield($filter) {
         restrict: 'E',
         template: template,
         link: function (scope) {
-            scope.$watch('customfield',function(field){
-                if(!field) return;
-                if(scope.customfield.Value == ""){
-                    scope.customfield.Value = "12:00 PM";
-                }
-            });
             scope.$watch('customfield.Time', function(newVal) {
                 if (!newVal) return;
                 scope.customfield.Value = $filter('date')(scope.customfield.Time, 'shortTime');
@@ -573,9 +573,6 @@ function octextboxfield() {
                 /* remove or add any custom buttons as needed here */
             });
 
-            CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
-            CKEDITOR.config.shiftEnterMode = CKEDITOR.ENTER_BR;
-
             /* Take no additional action if there is no ngModel value on the element */
             if(!ngModel) return;
 
@@ -584,14 +581,6 @@ function octextboxfield() {
                 scope.$apply(function() {
                     ngModel.$setViewValue(ck.getData());
                 });
-            });
-
-            ck.on('change', function () {
-                ngModel.$setViewValue(ck.getData());
-            });
-
-            ck.on('instanceReady', function() {
-                ck.setData(ngModel.$viewValue);
             });
 
             /* When the text is changed the ng-model value is updated */
@@ -853,7 +842,7 @@ function getDateFromFormat(val,format) {
                 else { year=2000+(year-0); }
             }
         }
-        else if (token=="MMM"||token=="NNN" || token=="MMMM"||token=="NNNN"){
+        else if (token=="MMM"||token=="NNN"){
             month=0;
             for (var i=0; i<MONTH_NAMES.length; i++) {
                 var month_name=MONTH_NAMES[i];
@@ -864,16 +853,11 @@ function getDateFromFormat(val,format) {
                         i_val += month_name.length;
                         break;
                     }
-                    if (token=="MMMM"||(token=="NNNN"&&i<12)) {
-                        month=i+1;
-                        i_val += month_name.length;
-                        break;
-                    }
                 }
             }
             if ((month < 1)||(month>12)){return 0;}
         }
-        else if (token=="EEEE" || token=="EEE"|| token=="EE"|| token=="E"){
+        else if (token=="EE"||token=="E"){
             for (var i=0; i<DAY_NAMES.length; i++) {
                 var day_name=DAY_NAMES[i];
                 if (val.substring(i_val,i_val+day_name.length).toLowerCase()==day_name.toLowerCase()) {
