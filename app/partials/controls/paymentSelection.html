@@ -1,14 +1,16 @@
 <div>
     <span class="btn-group">
         <button class="btn btn-default" type="button"
-                ng-show="user.Permissions.contains('PayByPO') && cartCC == false"
-                ng-click="currentOrder.PaymentMethod = 'PurchaseOrder'">
+                ng-show="user.Permissions.contains('PayByPO') && currentOrder.Total === 0 && (adtDealer === true || multiFamily === true || adtBuilderKit === true)"
+                ng-click="currentOrder.PaymentMethod = 'PurchaseOrder'"
+				style="margin-right: 5px;">
             <i ng-class="{'fa fa-check': currentOrder.PaymentMethod == 'PurchaseOrder' }"></i>
-            {{'Purchase Order' | r | xlat}}
+            {{'Kit Purchase Order' | r | xlat}}
         </button>
         <button class="btn btn-default" type="button"
-                ng-show="user.Permissions.contains('PayByPO') && adminMember == true && cartCC == true"
-                ng-click="currentOrder.PaymentMethod = 'PurchaseOrder'">
+                ng-show="user.Permissions.contains('PayByPO') && currentOrder.Total != 0 && adtDealer != true"
+                ng-click="currentOrder.PaymentMethod = 'PurchaseOrder'"
+                style="margin-right: 5px;border-radius:24px;">
             <i ng-class="{'fa fa-check': currentOrder.PaymentMethod == 'PurchaseOrder' }"></i>
             {{'Purchase Order' | r | xlat}}
         </button>
@@ -26,8 +28,9 @@
             {{'Spending Account' | r | xlat}}
         </button>
         <button class="btn btn-default" type="button"
-                ng-if="user.AvailableCreditCards.length > 0 && user.Permissions.contains('PayByCreditCard') && cartCC == true"
-                ng-click="currentOrder.PaymentMethod = 'CreditCard'">
+                ng-if="user.AvailableCreditCards.length > 0 && user.Permissions.contains('PayByCreditCard')"
+                ng-click="currentOrder.PaymentMethod = 'CreditCard'"
+				style="border-bottom-left-radius: 24px;border-top-left-radius: 24px;">
             <i ng-class="{'fa fa-check': currentOrder.PaymentMethod == 'CreditCard' }"></i>
             {{'Credit Card' | r | xlat}}
         </button>
