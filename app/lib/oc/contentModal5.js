@@ -80,7 +80,7 @@ function ContentModalCtrl5($scope, $modal) {
                 //content block 2
                 //'<h4>Subheading</h4>',
                 '<p class="videoWrapper">',
-                '<iframe width="560" height="315" src="https://www.youtube.com/embed/P5GIjXG4uH8?autoplay=1&loop=1&playlist=GRonxog5mbw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+                '<iframe width="560" height="315" src="https://www.youtube.com/embed/P5GIjXG4uH8?autoplay=1&loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
                 '</p>',
                 '</div>',
                 //Optional footer
