@@ -13,7 +13,6 @@
 }
   .user-view-title {
     color: #4E2683;
-    font-family: 'gentonaextralight', Open Sans;
     font-size: 50px;
     font-weight: 800;
     letter-spacing: -0.92px;
@@ -22,8 +21,7 @@
     padding-bottom: 30px;
 }
 .user-view-text-1 {
-    color: #208fad;
-    font-family: 'Lato',sans-serif;
+    color: #242629;
     font-size: 20px;
     letter-spacing: 2.03px;
     line-height: 43px;
@@ -31,8 +29,7 @@
     margin: 0;
 }
 .user-view-text-2 {
-    color: #208fad;
-    font-family: 'Lato',sans-serif;
+    color: #242629;
     font-size: 40px;
     font-weight: bold;
     line-height: 43px;
@@ -40,41 +37,57 @@
 }
 .user-view-text-3 {
   color: #3B3E41;
-    font-family: 'Lato',sans-serif;
     font-size: 45px;
     font-weight: bold;
     line-height: 43px;
     text-align: center;
 }
 .save-button {
-  height: 61px;
-  width: 208px;
-  font-family: 'Lato',sans-serif;
-  font-size: 20px !important;
-  font-weight: 800;
-  letter-spacing: -0.31px;
-  line-height: 20px;
-  text-align: center;
-  background: #208fad;
-  border: #208fad;
-  color: white;
+	align-items: center;
+	background-color: white;
+	border: 0px;
+	border-color: 1px #242629;
+	border-bottom-left-radius: 24px;
+	border-bottom-right-radius: 24px;
+	border-radius: 24px;
+	border-top-left-radius: 24px;
+	border-top-right-radius: 24px;
+	box-sizing: border-box;
+	color: #242629;
+	display: flex;
+	font-family: "Brown Regular", "Open Sans", sans-serif;
+	font-size: 15px;
+	font-stretch: normal;
+	font-style: normal;
+	font-weight: bold;
+	justify-content: center;
+	letter-spacing: 1.35px;
+	line-height: normal;
+	margin-top: 1rem;
+	min-height: 48px;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	vertical-align: middle;
+	width: 265px;
+	margin: auto;
+	border: 1px solid #242629;
 }
 .save-button:hover {
-    background: #67cce9;
-      border: #67cce9;
-      color: white;
+	background-color: #242629;
+	color: white;
+	text-decoration: none;
 }
 .user-login-text-1 {
-  color: #208fad;
-  font-family: 'Lato',sans-serif;
+  color: #242629;
   font-size: 70px;
   font-weight: 800;
   letter-spacing: -1.29px;
   line-height: 63px;
 }
 .user-login-text-2 {
-  color: #208fad;
-  font-family: 'Lato',sans-serif;
+  color: #242629;
   font-size: 40px;
   font-weight: bold;
   letter-spacing: -0.74px;
@@ -87,14 +100,51 @@
     margin-top: 50px;
     background: #ededed;
 }
-
+@media screen and (max-width: 1300px) {
+.user-view-text-3 {
+    font-size: 35px;
+  }
+}
 @media screen and (max-width: 650px) {
 .user-login-text-1 {
     font-size: 55px;
   }
 }
+@media screen and (max-width: 600px) {
+.user-view-text-3 {
+    font-size: 30px;
+  }
+}
+@media screen and (max-width: 425px) {
+    .user-container {
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 0;
+    }
+.user-login-text-2 {
+    font-size: 30px;
+    }
+.user-login-text-1 {
+    font-size: 40px;
+    }
+    .user-form-mobile {
+        padding: 0 0 10px 0 !important;
+    }
+}
+@media screen and (max-width: 375px) {
+    .captionText {
+        font-size: 30px;
+    }
+}
+@media screen and (max-width: 325px) {
+    .user-container {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+    }
+}
 </style>
-<section class="user-view margin-Top" style="padding-left: 5px;padding-right: 5px;">
+<section class="user-view margin-Top" style="padding-left: 5px;padding-right: 5px;border-radius: 24px;">
   <div class="hidden-md hidden-lg" ng-class="{'panel panel-default':!user.Permissions.contains('ViewSelfAdmin')}">
     <div class="panel-heading" ng-show="!user.Permissions.contains('ViewSelfAdmin')" style="border: none;">
       <h3 class="panel-title">{{'My Account' | r | xlat}}</h3>
@@ -108,9 +158,9 @@
 
   <p class="user-view-title user-view-text-3" ng-hide="user.Type != 'TempCustomer'">Sign in or create an account to complete your order.</p>
   
-  <div class="row" style="display: flex;justify-content: center;padding-bottom: 80px;background: #ededed;">
+  <div class="row" style="display: flex;justify-content: center;padding-bottom: 80px;background: #ededed;border-radius: 24px;">
     
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 hidden-xs hidden-sm" ng-show="user.Email == ''" style="border-right: 4px solid #ededed;background: #ededed;">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" ng-show="user.Email == ''" style="border-right: 4px solid #ededed;background: #ededed;">
 
       <form ng-show="user.Permissions.contains('ViewSelfAdmin')" name="login_existing" ng-submit="loginExisting()" ng-if="user.Type == 'TempCustomer'">
         <div class="panel" id="user_form" style="box-shadow: none;background: #ededed;">
@@ -172,16 +222,13 @@
               </div>
               <!--TODO username input shouldn't default to temporary usernames, if the user is temp, make the placeholder show instead !-->
               <div>
-                <!--<label ng-show="user.Password">{{'Password' | r | xlat}}</label>-->
                 <input name="password" class="form-control" ng-required="user.Type == 'TempCustomer'" type="password" ng-model="user.Password" placeholder="{{'Password' | r | xlat}}" autocomplete="off" />
                 <i class="fa fa-lock"></i>
               </div>
               <div>
-                <!--<label ng-show="user.ConfirmPassword">{{('Confirm' | r) + ' ' + ('Password' | r) | xlat}}</label>-->
                 <input name="confirm_password" ng-match="user.Password" ng-required="user.Type == 'TempCustomer' || user.Password" class="form-control" type="password" ng-model="user.ConfirmPassword" placeholder="{{('Confirm' | r) + ' ' + ('Password' | r) | xlat}}"
                   autocomplete="off" />
                 <i class="fa fa-lock"></i>
-                <!--<inlineerror ng-show="user_form.confirm_password.$error.match" title="{{('Password' | r) + 's do not match!' | xlat}}" />-->
               </div>
               <span class="alert-warning" ng-show="securityWarning">
                 <ul>
@@ -235,10 +282,10 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="" ng-show="user.Type != 'TempCustomer'">
       <form ng-show="user.Permissions.contains('ViewSelfAdmin')" name="user_form" ng-submit="save()">
         <div class="panel user-container" id="user_form" style="box-shadow: none;border:none;background: #ededed;">
-          <div class="panel-heading" style="border: none;">
+          <!-- <div class="panel-heading" style="border: none;">
             <p class="user-login-text-1">Welcome {{user.FirstName}}</p>
-          </div>
-          <div class="panel-body">
+          </div> -->
+          <div class="panel-body user-form-mobile">
             <p class="user-login-text-2">Your Account</p>
             <div class="col-sm-6 view-form-icon">
               <div>
@@ -251,17 +298,10 @@
                 <input name="phone" class="form-control" type="text" ng-model="user.Phone" ui-mask="(999) 999-9999" autocomplete="off" />
                 <i class="fa fa-phone"></i>
               </div>
-              <div>
-                <!--<label ng-show="user.Password">{{'Password' | r | xlat}}</label>-->
+              <!-- <div>
                 <input name="password" class="form-control" ng-required="user.Type == 'TempCustomer'" type="password" ng-model="user.Password" placeholder="{{'Password' | r | xlat}}" autocomplete="off" />
                 <i class="fa fa-lock"></i>
-              </div>
-              <div>
-                <!--<label class="required">{{'Email' | r | xlat}}</label>-->
-                <input name="email" class="form-control" type="email" ng-model="user.Email" required placeholder="{{'Email' | r | xlat}}" autocomplete="off" />
-                <i class="fa fa-envelope-o"></i>
-                <!--<inlineerror ng-show="user_form.email.$invalid" title="{{'Please enter a valid' + ' ' +  ('Email' | rl) + ' ' + ('Address' | rl) | xlat}}" />-->
-              </div>
+              </div> -->
             </div>
             <div class="col-sm-6 view-form-icon">
               <div>
@@ -270,17 +310,18 @@
                 <i class="fa fa-user"></i>
               </div>
               <div>
-                <!--<label class="required">{{'Username' | r | xlat}}</label>-->
+                <input name="email" class="form-control" type="email" ng-model="user.Email" required placeholder="{{'Email' | r | xlat}}" autocomplete="off" />
+                <i class="fa fa-envelope-o"></i>
+              </div>
+              <!-- <div>
                 <input name="username" class="form-control" type="text" ng-model="user.TempUsername" required placeholder="{{'Username' | r | xlat}}" autocomplete="off" />
                 <i class="fa fa-user"></i>
-              </div>
+              </div> -->
               <!--TODO username input shouldn't default to temporary usernames, if the user is temp, make the placeholder show instead !-->
-              <div>
-                <!--<label ng-show="user.ConfirmPassword">{{('Confirm' | r) + ' ' + ('Password' | r) | xlat}}</label>-->
+              <!-- <div>
                 <input name="confirm_password" ng-match="user.Password" ng-required="user.Type == 'TempCustomer' || user.Password" class="form-control" type="password" ng-model="user.ConfirmPassword" placeholder="{{('Confirm' | r) + ' ' + ('Password' | r) | xlat}}"
                   autocomplete="off" />
                 <i class="fa fa-lock"></i>
-                <!--<inlineerror ng-show="user_form.confirm_password.$error.match" title="{{('Password' | r) + 's do not match!' | xlat}}" />-->
               </div>
               <span class="alert-warning" ng-show="securityWarning">
                 <ul>
@@ -302,7 +343,7 @@
                     </ul>
                   </ul>
                 </ul>
-              </span>
+              </span> -->
             </div>
           </div>
           <!--<div class="panel-body">
@@ -314,7 +355,7 @@
               </div>
             </div>
           </div>-->
-          <div class="text-center">
+          <!-- <div class="text-center">
             <div class="container">
               <div class="row">
                 <div class="col-md-9 hidden">
@@ -325,7 +366,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </form>
     </div>
@@ -397,18 +438,15 @@
                 <i class="fa fa-user"></i>
               </div>
               <!--TODO username input shouldn't default to temporary usernames, if the user is temp, make the placeholder show instead !-->
-              <div>
-                <!--<label ng-show="user.Password">{{'Password' | r | xlat}}</label>-->
+              <!-- <div>
                 <input name="password" class="form-control" ng-required="user.Type == 'TempCustomer'" type="password" ng-model="user.Password" placeholder="{{'Password' | r | xlat}}" autocomplete="off" />
                 <i class="fa fa-lock"></i>
-              </div>
-              <div>
-                <!--<label ng-show="user.ConfirmPassword">{{('Confirm' | r) + ' ' + ('Password' | r) | xlat}}</label>-->
+              </div> -->
+              <!-- <div>
                 <input name="confirm_password" ng-match="user.Password" ng-required="user.Type == 'TempCustomer' || user.Password" class="form-control" type="password" ng-model="user.ConfirmPassword" placeholder="{{('Confirm' | r) + ' ' + ('Password' | r) | xlat}}"
                   autocomplete="off" />
                 <i class="fa fa-lock"></i>
-                <!--<inlineerror ng-show="user_form.confirm_password.$error.match" title="{{('Password' | r) + 's do not match!' | xlat}}" />-->
-              </div>
+              </div> -->
               <span class="alert-warning" ng-show="securityWarning">
                 <ul>
                   <li>{{'Your password does not meet the requirements set for length or complexity. It must be changed to meet the minimum requirements before continuing.' | xlat}}</li>
