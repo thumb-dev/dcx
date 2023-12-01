@@ -1,16 +1,14 @@
 <style>
   .cart-title {
     color: #208fad;
-    font-family: 'Lato',sans-serif;
     font-size: 40px;
     font-weight: bold;
     letter-spacing: -0.74px;
     line-height: 63px;
   }
   .order-details-container {
-    background-color: #d2e8ee;
+    background-color: #ededed;
     padding: 10px;
-    width: max-content;
     border-radius: 5px;
     margin-bottom: 100px;
  }
@@ -58,7 +56,7 @@
                         <orderhistorydetails></orderhistorydetails>
                         <orderhistorysummary ng-if="!(user.Permissions.contains('HidePricing'))" ng-hide="order.LineItems[0].Product.InteropID === 'CDC-APP-KIT-001' || order.LineItems[0].Product.Name === 'New Hire Kit'"></orderhistorysummary>
                     </div>
-                    <div class="panel-footer" ng-if="order.FromUserID == user.ID && order.Status != 'Unsubmitted'" style="padding: 40px 15px;background-color: #d2e8ee;">
+                    <div class="panel-footer" ng-if="order.FromUserID == user.ID && order.Status != 'Unsubmitted'" style="padding: 40px 15px;background-color: #ededed;">
                         <button ng-disabled="currentOrder" class="btn btn-primary pull-right" ng-click="repeatOrder()">
                             <i ng-show="currentOrder" class="fa fa-warning"></i>
                             {{('Repeat' | r) + ' ' + ('Order' | r) | xlat}}
@@ -113,9 +111,9 @@
                 </div>
             </div>
 
-            <div ng-show="order.Approvals" class="panel panel-default approval-rule-status-summary">
-                <div class="panel-heading">
-                    <h3 class="panel-title panel-primary">{{'Approvals' | r | xlat}}</h3>
+            <div ng-show="order.Approvals" class="panel panel-default approval-rule-status-summary" style="border: none;">
+                <div class="">
+                    <h3 class="" style="padding-bottom: 10px;border-bottom: 1px solid #979797;font-weight: 600;">{{'Approvals' | r | xlat}}</h3>
                 </div>
                 <div class="panel-body">
                     <approval ng-show="order.Status == 'AwaitingApproval' && (order.UserCanApprove || user.Permissions.contains('ApproveAllOrders'))" order="order"/>
