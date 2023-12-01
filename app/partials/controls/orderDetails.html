@@ -1,8 +1,7 @@
 <style>
   .checkout-title {
     color: #208fad;
-    font-family: 'Lato',sans-serif;
-    font-size: 40px;
+    font-size: 35px;
     font-weight: bold;
     letter-spacing: -0.74px;
     padding-right: 10px;
@@ -50,7 +49,7 @@
                 </div>
             </div>-->
             <div class="alert alert-warning" role="alert" style="text-align:center;margin-bottom: 0;">
-              Any questions or requirements prior to placing your order, please click on the Chat button below or email us at <a href="mailto:hello@thumbprint.com">hello@thumbprint.com</a>. Once an order is placed, it is processed automatically.
+              Any questions or requirements prior to placing your order, please click on the Chat button below or email us at <a href="mailto:dcx@thumbprint.com">dcx@thumbprint.com</a>. Once an order is placed, it is processed automatically.
             </div>
             <div class="view-form-icon" ng-show="user.Permissions.contains('CostCenterPerOrder') && !user.Permissions.contains('CostCenterPerLine') && user.CostCenters.length > 0 || user.Permissions.contains('CostCenterPerOrder') && user.Permissions.contains('FreeFormCostCenter')">
                 <div ng-class="{'view-form-select': !currentOrder.CostCenter && user.CostCenters.length > 1, '': currentOrder.CostCenter }">
@@ -65,13 +64,40 @@
                     <i class="fa fa-arrow-down" ng-show="user.CostCenters.length > 1 && !user.Permissions.contains('FreeFormCostCenter')"></i>
                 </div>
             </div>
-            <div ng-show="currentOrder.OrderFields">
+            <!--<div ng-show="currentOrder.OrderFields">
                 <hr />
                 <div ng-repeat="field in currentOrder.OrderFields">
                     <customtextfield customfield="field" ng-if="field.ControlType == 'Text'" ng-required="field.IsRequired" />
                     <customselectionfield customfield="field" ng-if="field.ControlType == 'Selection'" ng-required="field.IsRequired" />
                 </div>
-            </div>
+            </div>-->
+            
+      <div ng-if="adtDealer == true" class="alert alert-danger text-center" style="margin-top:15px;border-radius:24px;"><span><input type="checkbox"
+                         required="required"
+                         ng-model="confirmTried.value1"
+                         name="Confirmed">
+          By checking this box, I acknowledge this is an on-demand order, production of apparel is <strong>10-15 days</strong> from time of order. Your items are produced at the time of order, and can not be refunded or exchanged once color & size are selected.</span>
+      </div>
+      
+      <div ng-repeat="field in currentOrder.OrderFields | filter:{Name:'DCX_Event'}">
+          <ocselectionfield customfield="field" options="options" ng-if="field.ControlType == 'Selection'" label='Is this order for an event?	'></ocselectionfield>
+        </div>
+        
+        <div ng-if="currentOrder.OrderFields[0].Value === 'Yes' || currentOrder.OrderFields[1].Value === 'Yes' || currentOrder.OrderFields[2].Value === 'Yes' || currentOrder.OrderFields[3].Value === 'Yes'">
+        <div ng-repeat="field in currentOrder.OrderFields | filter:{Name:'DCX_Event_Name'}">
+          <octextfield customfield="field" options="options" ng-if="field.ControlType == 'Text'" label='Event Name'></octextfield>
+        </div>
+        <div ng-repeat="field in currentOrder.OrderFields | filter:{Name:'DCX_Event_Date'}">
+            <ocdatefield customfield="field" options="options" ng-if="field.ControlType == 'Text'" format='MM-dd-yyyy' />
+          </div>
+          <div ng-repeat="field in currentOrder.OrderFields | filter:{Name:'DCX_Delivery_Window'}">
+            <ocdatefield customfield="field" options="options" ng-if="field.ControlType == 'Text'" format='MM-dd-yyyy' />
+          </div>
+       <!--   <div ng-repeat="field in currentOrder.OrderFields | filter:{Name:'DCX_Label'}">
+             <ocfilefield customfield="field" options="options" ng-if="field.ControlType == 'Text'"></ocfilefield>
+          </div> -->
+        </div>
+
         </form>
     </div>
 </div>
