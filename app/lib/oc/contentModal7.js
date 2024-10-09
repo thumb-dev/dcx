@@ -76,7 +76,7 @@ function ContentModalCtrl7($scope, $modal) {
         // content block 1
         //'<h4>Subheading</h4>',
         '<p>',
-        'Please be aware that we are in the path of Hurricane Milton. Our operations are currently suspended or limited through the end of this week as we prioritize the safety of our team and community',
+        'Please be aware that we are in the path of Hurricane Milton. Our operations are currently suspended or limited through the end of this week as we prioritize the safety of our team and community.',
         '</p>',
         '<p>',
         'We appreciate your understanding during this time.',
